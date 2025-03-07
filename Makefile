@@ -1,10 +1,10 @@
-SRC = fractol.c	img_helper.c frac_helper.c	drawfrac.c
+SRC = minirt.c
 
 LIBFT = libft
 
 MLX = libmlx
 
-NAME = fractol
+NAME = miniRT
 
 OBJS = ${SRC:.c=.o}
 
@@ -13,7 +13,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -L. -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c
-	${CC} -Imlx -c $< -o $@
+	${CC} ${CFLAGS} -Imlx -c $< -o $@
 
 all: ${NAME}
 
