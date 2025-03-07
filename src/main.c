@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "minirt.h"
 
 int check_arg(char **argv, int argc)
 {

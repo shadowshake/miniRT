@@ -1,10 +1,10 @@
-SRC = fractol.c	img_helper.c frac_helper.c	drawfrac.c
+SRC =
 
 LIBFT = libft
 
 MLX = libmlx
 
-NAME = fractol
+NAME = miniRT
 
 OBJS = ${SRC:.c=.o}
 
