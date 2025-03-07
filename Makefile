@@ -10,10 +10,10 @@ OBJS = ${SRC:.c=.o}
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -L. -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -L. -lmlx -lX11 -lXext -lm
 
 %.o: %.c
-	${CC} -Imlx -c $< -o $@
+	${CC} ${CFLAGS} -Imlx -c $< -o $@
 
 all: ${NAME}
 
