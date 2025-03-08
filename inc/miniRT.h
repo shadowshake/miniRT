@@ -58,6 +58,10 @@ typedef struct s_scene
 	t_cylinder	*cylinders;
 }   t_scene;
 
-
+//parse folder
+int		parse(char *file, t_scene *scene);
+int		correct_file(char *str);
+int		read_file(int fd, t_scene *scene);
+char	*white_space(char *line);
 
 #endif

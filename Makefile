@@ -1,6 +1,8 @@
-FILES = main.c
+FILES = main.c \
+		#read.c \
 
-SRC = src/$(FILES)
+SRC =	$(wildcard ./src/parse/*.c) \
+		src/$(FILES)	
 
 LIBFT = libft
 
