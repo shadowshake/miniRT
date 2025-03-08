@@ -1,8 +1,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "libft/libft.h"
-# include "libmlx/mlx.h"
+# include "../libft/ft_printf/ft_printf.h"
+# include "../libmlx/mlx.h"
 
 # include <math.h>
 # include <fcntl.h>
@@ -48,7 +48,11 @@ typedef struct s_ambient
 
 typedef struct s_scene
 {
-
+	int			sp_qty;
+	int			pl_qty;
+	int			cy_qty;
+	t_light		light;
+	t_ambient	ambient;
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_cylinder	*cylinders;

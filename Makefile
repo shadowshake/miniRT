@@ -1,4 +1,6 @@
-SRC =
+FILES = main.c
+
+SRC = src/$(FILES)
 
 LIBFT = libft
 
@@ -10,7 +12,7 @@ OBJS = ${SRC:.c=.o}
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -L. -lmlx -lX11 -lXext -lm
+CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft -L. -lmlx -lX11 -lXext -lm
 
 %.o: %.c
 	${CC} ${CFLAGS} -Imlx -c $< -o $@

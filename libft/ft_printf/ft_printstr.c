@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                         :+:      :+:    :+:  */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 10:57:57 by cbayzand          #+#    #+#             */
-/*   Updated: 2024/07/19 11:00:55 by cbayzand         ###   ########.fr       */
+/*   Created: 2024/04/18 13:33:40 by cbayzand          #+#    #+#             */
+/*   Updated: 2024/04/18 13:41:34 by cbayzand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_strcpy(char *dest, const char *src)
+#include "ft_printf.h"
+
+int	ft_printstr(char *str)
 {
-	while (*src)
+	int	len;
+
+	len = 0;
+	if (str == NULL)
 	{
-		*dest = *src;
-		dest++;
-		src++;
+		len += ft_printstr("(null)");
+		return (len);
 	}
-	*dest = '\0';
+	while (str[len])
+	{
+		write (1, &str[len], 1);
+		len++;
+	}
+	return (len);
 }
