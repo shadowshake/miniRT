@@ -1,4 +1,8 @@
-SRC = minirt.c
+FILES = main.c \
+		#read.c \
+
+SRC =	$(wildcard ./src/parse/*.c) \
+		src/$(FILES)	
 
 LIBFT = libft
 
@@ -10,7 +14,7 @@ OBJS = ${SRC:.c=.o}
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -L. -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft -L. -lmlx -lX11 -lXext -lm
 
 %.o: %.c
 	${CC} ${CFLAGS} -Imlx -c $< -o $@

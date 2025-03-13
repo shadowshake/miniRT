@@ -1,17 +1,18 @@
-#include "minishell.h"
-
-int check_arg(char **argv, int argc)
-{
-	if (argc != 2)
-	{
-		printf("Error\nInput a single .rt file")
-		return (1);
-	}
-}
+#include "miniRT.h"
 
 int main(int argc, char **argv)
 {
-	if(check_arg(argv, argc))
+	t_scene	*scene;
+
+	scene = ft_calloc(sizeof(t_scene), 1);
+	if (argc != 2)
+	{
+		printf("Error\nInput a single .rt file\n");
+		free(scene);
 		return (1);
-	
+	}
+	if (parse(argv[1], scene))
+		return (1);
+	free(scene);
+	return (0);
 }
