@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:34:32 by cbayzand          #+#    #+#             */
-/*   Updated: 2024/04/18 13:41:46 by cbayzand         ###   ########.fr       */
+/*   Created: 2024/04/18 13:34:15 by cbayzand          #+#    #+#             */
+/*   Updated: 2024/04/18 13:41:08 by cbayzand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_printint(int num)
 {
-	t_scene	*scene;
+	int	len;
 
-	scene = ft_calloc(sizeof(t_scene), 1);
-	if (argc != 2)
+	len = 0;
+	if (num == -2147483648)
+		len += ft_printstr("-2147483648");
+	else if (num < 0)
 	{
-		printf("Error\nInput a single .rt file\n");
-		free(scene);
-		return (1);
+		len += ft_printchar('-');
+		len += ft_printint(-num);
 	}
-	if (!parse(argv[1], scene))
-		return (1);
-	free(scene);
-	return (0);
+	else if (num >= 10)
+	{
+		len += ft_printint(num / 10);
+		len += ft_printchar(num % 10 + '0');
+	}
+	else
+		len += ft_printchar(num + '0');
+	return (len);
 }

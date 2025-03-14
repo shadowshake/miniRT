@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printlowhex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:34:32 by cbayzand          #+#    #+#             */
-/*   Updated: 2024/04/18 13:41:46 by cbayzand         ###   ########.fr       */
+/*   Created: 2024/04/18 13:41:21 by cbayzand          #+#    #+#             */
+/*   Updated: 2024/04/18 13:41:23 by cbayzand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_printlowhex(unsigned int num)
 {
-	t_scene	*scene;
+	int		len;
+	int		j;
+	int		temp;
+	char	hexa_num[100];
 
-	scene = ft_calloc(sizeof(t_scene), 1);
-	if (argc != 2)
+	len = 0;
+	if (num == 0)
 	{
-		printf("Error\nInput a single .rt file\n");
-		free(scene);
+		write (1, "0", 1);
 		return (1);
 	}
-	if (!parse(argv[1], scene))
-		return (1);
-	free(scene);
-	return (0);
+	while (num != 0)
+	{
+		temp = num % 16;
+		if (temp < 10)
+			temp = temp + 48;
+		else
+			temp = temp + 87;
+		hexa_num[len++] = temp;
+		num = num / 16;
+	}
+	j = len;
+	while (j-- > 0)
+		write (1, &hexa_num[j], 1);
+	return (len);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printunsignedint.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_printunsignedint(unsigned int num)
 {
-	t_scene	*scene;
+	int	len;
 
-	scene = ft_calloc(sizeof(t_scene), 1);
-	if (argc != 2)
+	len = 0;
+	if (num >= 10)
 	{
-		printf("Error\nInput a single .rt file\n");
-		free(scene);
-		return (1);
+		len += ft_printunsignedint(num / 10);
+		len += ft_printchar(num % 10 + '0');
 	}
-	if (!parse(argv[1], scene))
-		return (1);
-	free(scene);
-	return (0);
+	else
+		len += ft_printchar(num + '0');
+	return (len);
 }

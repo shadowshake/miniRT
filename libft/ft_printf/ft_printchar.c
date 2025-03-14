@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:34:32 by cbayzand          #+#    #+#             */
-/*   Updated: 2024/04/18 13:41:46 by cbayzand         ###   ########.fr       */
+/*   Created: 2024/04/18 13:34:00 by cbayzand          #+#    #+#             */
+/*   Updated: 2024/04/18 13:39:54 by cbayzand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_printchar(int c)
 {
-	t_scene	*scene;
-
-	scene = ft_calloc(sizeof(t_scene), 1);
-	if (argc != 2)
-	{
-		printf("Error\nInput a single .rt file\n");
-		free(scene);
-		return (1);
-	}
-	if (!parse(argv[1], scene))
-		return (1);
-	free(scene);
-	return (0);
+	write (1, &c, 1);
+	return (1);
 }

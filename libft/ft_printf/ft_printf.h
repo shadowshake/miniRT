@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 13:34:32 by cbayzand          #+#    #+#             */
-/*   Updated: 2024/04/18 13:41:46 by cbayzand         ###   ########.fr       */
+/*   Created: 2024/04/18 13:33:24 by cbayzand          #+#    #+#             */
+/*   Updated: 2024/04/18 13:33:28 by cbayzand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include "../libft/libft.h"
 
-int	main(int argc, char **argv)
-{
-	t_scene	*scene;
+int	ft_printlowhex(unsigned int num);
+int	ft_printchar(int c);
+int	ft_printint(int num);
+int	ft_printstr(char *str);
+int	ft_printuphex(unsigned int num);
+int	ft_printhex(size_t ptr);
+int	ft_printunsignedint(unsigned int num);
+int	ft_printf(const char *s, ...);
 
-	scene = ft_calloc(sizeof(t_scene), 1);
-	if (argc != 2)
-	{
-		printf("Error\nInput a single .rt file\n");
-		free(scene);
-		return (1);
-	}
-	if (!parse(argv[1], scene))
-		return (1);
-	free(scene);
-	return (0);
-}
+#endif
