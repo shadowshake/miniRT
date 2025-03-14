@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/18 13:34:32 by cbayzand          #+#    #+#             */
+/*   Updated: 2024/04/18 13:41:46 by cbayzand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 char	*white_space_loop(char *line, char *temp)
@@ -53,12 +65,11 @@ int	read_file(int fd, t_scene *scene)
 		line = white_space(line);
 		if (!line)
 			continue ;
-		/*if(!store_info(scene, line))
+		if (!store_info(scene, line))
 		{
 			free(line);
-			return (1);
-		}*/
-		printf("line: %s\n", line);
+			return (0);
+		}
 		free(line);
 	}
 	close (fd);
@@ -72,10 +83,7 @@ int	correct_file(char *str)
 
 	len = ft_strlen(str);
 	if (ft_strncmp(str + (len - 3), ".rt", 3))
-	{
-		printf("Error\nInvalid file type, ensure this is .rt file\n");
-		return (0);
-	}
+		return (print_error("Invalid file type, ensure this is .rt file"));
 	else
 		return (1);
 }
@@ -88,11 +96,8 @@ int	parse(char *file, t_scene *scene)
 		return (1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error\nFailed to open file\n");
-		return (1);
-	}
+		return (print_error("Failed to open file"));
 	if (!read_file(fd, scene))
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
