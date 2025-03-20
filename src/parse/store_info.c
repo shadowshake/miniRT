@@ -92,10 +92,12 @@ int	store_info(t_scene *scene, char *line)
 	/*
 	else if (str[0] == 'L')
 		return (init_light(scene, str));
+	*/
 	else if (str[0] == 'C')
 		return (init_camera(scene, str));
 	else if (ft_strncmp(str[0], "sp", 2))
 		return (init_sphere(scene, str));
+	/*
 	else if (ft_strncmp(str[0], "pl", 2))
 		return (init_plane(scene, str));
 	else if (ft_strncmp(str[0], "cy", 2))

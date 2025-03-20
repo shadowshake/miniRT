@@ -51,6 +51,7 @@ int	init_ambient(t_scene *scene, char **line)
 	return (1);
 }
 
+
 /*
 int init_light(t_scene *scene, char **line)
 {

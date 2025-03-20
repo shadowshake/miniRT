@@ -17,3 +17,16 @@ int	print_error(char *str)
 	printf("Error\n%s\n", str);
 	return (0);
 }
+
+void	free_strs(char **strs)
+{
+	int	i;
+
+	i = -1;
+	if (strs)
+	{
+		while (strs[++i])
+			free(strs[i]);
+		free(strs);
+	}
+}
