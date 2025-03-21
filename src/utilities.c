@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbayzand <cbayzand@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/miniRT.h"
+#include "miniRT.h"
 
-static void	scene_init(t_scene *scene)
+int	print_error(char *str)
 {
-	scene -> mlx = mlx_init();
-	scene -> win = mlx_new_window(scene -> mlx, 800, 800, "raytrace");
-	scene -> img = mlx_new_image(scene -> mlx, 800, 800);
-	scene -> addr = mlx_get_data_addr(scene -> img, &(scene -> bits_per_pixel),
-			&(scene -> line_length), &(scene -> endian));
-	mlx_hook(scene -> win, 2, 1L << 0, mlx_exit, scene);
-	mlx_hook(scene -> win, 17, 0, mlx_exit, scene);
+	printf("Error\n%s\n", str);
+	return (0);
 }
 
-int	main(int argc, char **argv)
+void	free_strs(char **strs)
 {
-	t_scene	*scene;
+	int	i;
 
-	scene = ft_calloc(sizeof(t_scene), 1);
-	if (argc != 2)
+	i = -1;
+	if (strs)
 	{
-		print_error("Input a single .rt file");
-		free(scene);
-		return (1);
+		while (strs[++i])
+			free(strs[i]);
+		free(strs);
 	}
-	if (!parse(argv[1], scene))
-		return (1);
-	scene_init(scene);
-	render(scene);
-	free(scene);
-	return (0);
 }

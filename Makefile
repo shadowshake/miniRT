@@ -1,8 +1,10 @@
 FILES = main.c \
-		#read.c \
+		utilities.c \
 
 SRC =	$(wildcard ./src/parse/*.c) \
-		src/$(FILES)	
+		$(wildcard ./src/render/*.c) \
+		src/main.c \
+		src/utilities.c
 
 LIBFT = libft
 
@@ -14,15 +16,15 @@ OBJS = ${SRC:.c=.o}
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft -L. -lmlx -lX11 -lXext -lm
+CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft
 
 %.o: %.c
-	${CC} ${CFLAGS} -Imlx -c $< -o $@
+	${CC} ${CFLAGS} -Imlx_linux -c $< -o $@
 
 all: ${NAME}
 
 ${NAME}: ${LIBFT}.a ${MLX}.a ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT}.a ${MLX}.a -o ${NAME}
+	${CC} ${CFLAGS} -L. -lmlx -lX11 -lXext -lm ${OBJS} ${LIBFT}.a ${MLX}.a -o ${NAME}
 
 ${LIBFT}.a: 
 	${MAKE} re -C ${LIBFT}
