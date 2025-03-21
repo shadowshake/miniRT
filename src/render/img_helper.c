@@ -16,7 +16,8 @@ void	mlx_draw(t_scene *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x <= 800 && x >= -800 && y <= 800 && y >= -800)
+	if (x <= WINHEIGHT && x >= -(WINHEIGHT)
+		&& y <= (WINWIDTH) && y >= -(WINWIDTH))
 	{
 		dst = data->addr + (y * data->line_length
 				+ x * (data->bits_per_pixel / 8));
@@ -24,7 +25,7 @@ void	mlx_draw(t_scene *data, int x, int y, int color)
 	}
 }
 
-int	mlx_exit(int keycode, t_fractal *mlx)
+int	mlx_exit(int keycode, t_scene *mlx)
 {
 	if (keycode == 53)
 	{

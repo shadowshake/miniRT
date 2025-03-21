@@ -6,18 +6,22 @@ int	init_sphere(t_scene *scene, char **line)
 	char		**cood;
 	char		**color;
 
-	cood = ft_split(line[0]);
+	cood = ft_split(line[0], ',');
 	if (!cood)
 		return (0);
-	color = ft_split(line[2]);
+	color = ft_split(line[2], ',');
 	if (!color)
 	{
 		free_strs(cood);
 		return (0);
 	}
-	sp = scene->sphere;
+	sp = scene->spheres;
 	sp->pos[0] = str_to_float(cood[0]);
 	sp->pos[1]  = str_to_float(cood[1]);
 	sp->pos[2] = str_to_float(cood[2]);
-	sp->
+	sp->dia = str_to_float(line[1]);
+	sp->colour[0] = ft_atoi(color[0]);
+	sp->colour[1] = ft_atoi(color[1]);
+	sp->colour[2] = ft_atoi(color[2]);
+	return (1);
 }

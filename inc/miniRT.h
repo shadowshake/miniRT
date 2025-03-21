@@ -11,6 +11,14 @@
 # include <stdlib.h>
 # include <string.h>
 
+# ifndef WINHEIGHT
+#  define WINHEIGHT 800
+# endif
+
+# ifndef WINWIDTH
+#  define WINWIDTH 800
+# endif
+
 typedef struct s_sphere
 {
 	float	pos[3];
@@ -82,12 +90,15 @@ float	str_to_float(char *str);
 int		check_colour_range(char *str);
 int		init_ambient(t_scene *scene, char **line);
 int		init_camera(t_scene *scene, char **line);
+int		init_sphere(t_scene *scene, char **line);
 int		store_info(t_scene *scene, char *line);
 
+/* render */
+void	render(t_scene *scene);
 
 /* mlx render functions */
-void	mlx_draw(t_fractal *data, int x, int y, int color);
-int		mlx_exit(int keycode, t_fractal *mlx);
+void	mlx_draw(t_scene *data, int x, int y, int color);
+int		mlx_exit(int keycode, t_scene *mlx);
 
 /* utilities */
 void	free_strs(char **strs);

@@ -19,7 +19,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft -L. -lmlx -lX11 -lXext -lm
 
 %.o: %.c
-	${CC} ${CFLAGS} -Imlx -c $< -o $@
+	${CC} ${CFLAGS} -Imlx_linux -c $< -o $@
 
 all: ${NAME}
 

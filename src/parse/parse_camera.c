@@ -27,7 +27,7 @@ int init_camera(t_scene *scene, char **line)
 		free_strs(cood);
 		return (0);
 	}
-	cam = scene->camera;
+	cam = &(scene->camera);
 	cam->pos[0] = str_to_float(cood[0]);
 	cam->pos[1] = str_to_float(cood[1]);
 	cam->pos[2] = str_to_float(cood[2]);
