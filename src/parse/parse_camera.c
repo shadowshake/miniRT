@@ -18,10 +18,10 @@ int init_camera(t_scene *scene, char **line)
 	char		**vec;
 	t_camera	*cam;
 
-	cood = ft_split(line[0], ',');
+	cood = ft_split(line[1], ',');
 	if (!cood)
 		return (0);
-	vec = ft_split(line[1], ',');
+	vec = ft_split(line[2], ',');
 	if (!vec)
 	{
 		free_strs(cood);
@@ -34,6 +34,8 @@ int init_camera(t_scene *scene, char **line)
 	cam->vector[0] = str_to_float(vec[0]);
 	cam->vector[1] = str_to_float(vec[1]);
 	cam->vector[2] = str_to_float(vec[2]);
-	cam->fov = ft_atoi(line[2]);
+	cam->fov = ft_atoi(line[3]);
+	free_strs(cood);
+	free_strs(vec);
 	return (1);
 }
