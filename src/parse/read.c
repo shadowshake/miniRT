@@ -53,7 +53,7 @@ char	*white_space(char *line)
 	return (temp);
 }
 
-int	read_file(int fd, t_scene *scene)
+int	read_file(int fd, t_scene *scene, int *shape_index)
 {
 	char	*line;
 
@@ -65,7 +65,7 @@ int	read_file(int fd, t_scene *scene)
 		line = white_space(line);
 		if (!line)
 			continue ;
-		if (!store_info(scene, line))
+		if (!store_info(scene, line, shape_index))
 		{
 			free(line);
 			return (0);
@@ -77,27 +77,49 @@ int	read_file(int fd, t_scene *scene)
 	return (1);
 }
 
-int	correct_file(char *str)
+int	count_shapes(char *file, t_scene *scene)
 {
-	int	len;
+	int		fd;
+	char	*line;
 
-	len = ft_strlen(str);
-	if (ft_strncmp(str + (len - 3), ".rt", 3))
-		return (print_error("Invalid file type, ensure this is .rt file"));
-	else
-		return (1);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (print_error("Failed to open file"));
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (ft_strncmp(line, "sp", 2))
+			scene->sp_qty ++;
+		else if (ft_strncmp(line, "pl", 2))
+			scene->pl_qty ++;
+		else if (ft_strncmp(line, "cy", 2))
+			scene->cy_qty ++;
+		free(line);
+	}
+	close(fd);
+	return (1);
 }
 
 int	parse(char *file, t_scene *scene)
 {
 	int	fd;
+	int	shape_index[3];
 
-	if (!correct_file(file))
+	if (ft_strncmp(file + (ft_strlen(file) - 3), ".rt", 3))
+	{
+		print_error("Invalid file type, ensure this is .rt file");
 		return (1);
+	}
+	shape_index[0] = 0;
+	shape_index[1] = 0;
+	shape_index[2] = 0;
+	count_shapes(file, scene);
 	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 		return (print_error("Failed to open file"));
-	if (!read_file(fd, scene))
+	if (!read_file(fd, scene, shape_index))
 		return (0);
 	return (1);
 }

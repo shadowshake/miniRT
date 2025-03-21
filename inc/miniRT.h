@@ -83,15 +83,12 @@ typedef struct s_scene
 
 /* parse folder */
 int		parse(char *file, t_scene *scene);
-int		correct_file(char *str);
-int		read_file(int fd, t_scene *scene);
 char	*white_space(char *line);
-float	str_to_float(char *str);
 int		check_colour_range(char *str);
 int		init_ambient(t_scene *scene, char **line);
 int		init_camera(t_scene *scene, char **line);
-int		init_sphere(t_scene *scene, char **line);
-int		store_info(t_scene *scene, char *line);
+int		init_sphere(t_scene *scene, char **line, int *shape_inedx);
+int		store_info(t_scene *scene, char *line, int *shape_index);
 
 /* render */
 void	render(t_scene *scene);
@@ -101,6 +98,7 @@ void	mlx_draw(t_scene *data, int x, int y, int color);
 int		mlx_exit(int keycode, t_scene *mlx);
 
 /* utilities */
+float	str_to_float(char *str);
 void	free_strs(char **strs);
 int		print_error(char *str);
 

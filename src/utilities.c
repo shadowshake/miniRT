@@ -18,6 +18,46 @@ int	print_error(char *str)
 	return (0);
 }
 
+float	str_to_float(char *str)
+{
+	float	sum;
+	float	prec;
+	float	div;
+	float	sign;
+
+	prec = 0.0;
+	div = 1.0;
+	sign = 1.0;
+	if (str && str[0] == '-')
+		sign *= -1.0;
+	sum = (float)ft_atoi(str);
+	while (*str && *str != '.')
+		str++;
+	if (*str++ == '.')
+	{
+		while (*str >= '0' && *str <= '9')
+		{
+			div *= 10.0;
+			prec += (*str - '0') / div;
+			str++;
+		}
+		sum += prec * sign;
+	}
+	return (sum);
+}
+
+/*
+int	*init_array(int *input, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+		input[i] = 0;
+	return (input);
+}
+*/
+
 void	free_strs(char **strs)
 {
 	int	i;
