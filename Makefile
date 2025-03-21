@@ -19,12 +19,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft
 
 %.o: %.c
-	${CC} ${CFLAGS} -Imlx_linux -c $< -o $@
+	${CC} ${CFLAGS} -Imlx -c $< -o $@
 
 all: ${NAME}
 
 ${NAME}: ${LIBFT}.a ${MLX}.a ${OBJS}
-	${CC} ${CFLAGS} -L. -lmlx -lX11 -lXext -lm ${OBJS} ${LIBFT}.a ${MLX}.a -o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT}.a ${MLX}.a -L. -lmlx -lX11 -lXext -lm -o ${NAME}
 
 ${LIBFT}.a: 
 	${MAKE} re -C ${LIBFT}
