@@ -13,21 +13,21 @@
 
 typedef struct s_sphere
 {
-	float	center[3];
+	float	pos[3];
 	float	dia;
 	int		colour[3];
 }   t_sphere;
 
 typedef struct s_plane
 {
-	float	point[3];
+	float	pos[3];
 	float	vector[3];
 	int		colour[3];
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	float	center[3];
+	float	pos[3];
 	float	vector[3];
 	float	dia;
 	float	height;

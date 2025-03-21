@@ -23,7 +23,10 @@ int init_camera(t_scene *scene, char **line)
 		return (0);
 	vec = ft_split(line[1], ',');
 	if (!vec)
+	{
+		free_strs(cood);
 		return (0);
+	}
 	cam = scene->camera;
 	cam->pos[0] = str_to_float(cood[0]);
 	cam->pos[1] = str_to_float(cood[1]);
