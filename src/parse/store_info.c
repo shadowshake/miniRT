@@ -56,6 +56,7 @@ int	check_line(char *line)
 	int	i;
 
 	i = 1;
+	line = ft_strchr(line, ' ');
 	while (line[i])
 	{
 		if (!ft_isdigit(line[i]) && line[i] != ' ' && line[i] != ','
@@ -73,20 +74,19 @@ int	store_info(t_scene *scene, char *line, int *shape_index)
 	if (!check_line(line))
 		return (0);
 	str = ft_split(line, ' ');
+	printf("line %s\n", str[0]);
 	if (str[0][0] == 'A')
 		return (init_ambient(scene, str));
-	/*
-	else if (str[0] == 'L')
+	else if (str[0][0] == 'L')
 		return (init_light(scene, str));
-	*/
 	else if (str[0][0] == 'C')
 		return (init_camera(scene, str));
-	else if (ft_strncmp(str[0], "sp", 2))
+	else if (!ft_strncmp(str[0], "sp", 2))
 		return (init_sphere(scene, str, shape_index));
 	/*
-	else if (ft_strncmp(str[0], "pl", 2))
+	else if (!ft_strncmp(str[0], "pl", 2))
 		return (init_plane(scene, str));
-	else if (ft_strncmp(str[0], "cy", 2))
+	else if (!ft_strncmp(str[0], "cy", 2))
 		return (init_cylinder(scene, str));
 	*/
 	else

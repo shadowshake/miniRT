@@ -45,7 +45,8 @@ typedef struct s_cylinder
 typedef struct s_light
 {
 	float	pos[3];
-	float	bright;
+	float	ratio;
+	int		colour[3];
 }	t_light;
 
 typedef struct s_ambient
@@ -87,7 +88,9 @@ char	*white_space(char *line);
 int		check_colour_range(char *str);
 int		init_ambient(t_scene *scene, char **line);
 int		init_camera(t_scene *scene, char **line);
+int 	init_light(t_scene *scene, char **line);
 int		init_sphere(t_scene *scene, char **line, int *shape_inedx);
+int		init_shapes(t_scene *scene);
 int		store_info(t_scene *scene, char *line, int *shape_index);
 
 /* render */
@@ -99,7 +102,8 @@ int		mlx_exit(int keycode, t_scene *mlx);
 
 /* utilities */
 float	str_to_float(char *str);
-void	free_strs(char **strs);
+int		free_strs(char **strs);
 int		print_error(char *str);
+int		ft_isspace(char c);
 
 #endif

@@ -19,14 +19,13 @@ char	*white_space_loop(char *line, char *temp)
 
 	j = 0;
 	i = 0;
-	while (line[i] && (line[i] == '\t' || line[i] == '\n' || line[i] == ' '))
+	while (line[i] && ft_isspace(line[i]))
 		i++;
 	while (line[i])
 	{
-		if (line[i] == '\t' || line[i] == '\n' || line[i] == ' ')
+		if (ft_isspace(line[i]))
 		{
-			while (line[i] && (line[i] == '\t' || line[i] == '\n'
-					|| line[i] == ' '))
+			while (ft_isspace(line[i]))
 				i++;
 			if (!line[i])
 				break ;
@@ -57,6 +56,7 @@ int	read_file(int fd, t_scene *scene, int *shape_index)
 {
 	char	*line;
 
+	init_shapes(scene);
 	while (1)
 	{
 		line = get_next_line(fd);

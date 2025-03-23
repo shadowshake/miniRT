@@ -58,7 +58,7 @@ int	*init_array(int *input, int len)
 }
 */
 
-void	free_strs(char **strs)
+int	free_strs(char **strs)
 {
 	int	i;
 
@@ -69,4 +69,13 @@ void	free_strs(char **strs)
 			free(strs[i]);
 		free(strs);
 	}
+	return (0);
+}
+
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\f' || c == '\r'
+		|| c == 'v' || c == ' ')
+		return (1);
+	return (0);
 }

@@ -27,6 +27,7 @@ void	mlx_draw(t_scene *data, int x, int y, int color)
 
 int	mlx_exit(int keycode, t_scene *mlx)
 {
+	printf("%d\n", keycode);
 	if (keycode == 53)
 	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
