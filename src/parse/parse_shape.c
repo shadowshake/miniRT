@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_shape.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shulee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 18:51:52 by shulee            #+#    #+#             */
+/*   Updated: 2025/03/23 18:51:54 by shulee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/miniRT.h"
 
 static int	set_common(float *pos, int *colour, char *line1, char *line2)
@@ -31,7 +43,7 @@ int	init_sphere(t_scene *scene, char **line, int *shape_index)
 		return (0);
 	printf("test %f\n", sp->pos[1]);
 	sp->dia = str_to_float(line[2]);
-	return (1);
+	return (shape_index[0]++);
 }
 
 int	init_plane(t_scene *scene, char **line, int *shape_index)
@@ -49,7 +61,7 @@ int	init_plane(t_scene *scene, char **line, int *shape_index)
 	pl->vector[1] = str_to_float(vec[1]);
 	pl->vector[2] = str_to_float(vec[2]);
 	free_strs(vec);
-	return (1);
+	return (shape_index[1]++);
 }
 
 int	init_cylinder(t_scene *scene, char **line, int *shape_index)
@@ -69,5 +81,5 @@ int	init_cylinder(t_scene *scene, char **line, int *shape_index)
 	cy->vector[1] = str_to_float(vec[1]);
 	cy->vector[2] = str_to_float(vec[2]);
 	free_strs(vec);
-	return (1);
+	return (shape_index[2]++);
 }

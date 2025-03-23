@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_camera.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shulee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 18:50:39 by shulee            #+#    #+#             */
+/*   Updated: 2025/03/23 18:50:40 by shulee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/miniRT.h"
 
 int	check_cam_input(char **line)
@@ -12,7 +24,7 @@ int	check_cam_input(char **line)
 	return (1);
 }
 
-int init_camera(t_scene *scene, char **line)
+int	init_camera(t_scene *scene, char **line)
 {
 	char		**cood;
 	char		**vec;

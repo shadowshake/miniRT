@@ -26,7 +26,7 @@ static void	scene_init(t_scene *scene)
 	mlx_hook(scene -> win, 17, 0, mlx_exit, scene);
 }
 
-static void free_scene(t_scene *scene)
+static void	free_scene(t_scene *scene)
 {
 	if (scene->spheres)
 		free(scene->spheres);

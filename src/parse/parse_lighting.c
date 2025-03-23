@@ -53,8 +53,7 @@ int	init_ambient(t_scene *scene, char **line)
 	return (1);
 }
 
-
-int init_light(t_scene *scene, char **line)
+int	init_light(t_scene *scene, char **line)
 {
 	char	**cood;
 	t_light	*l;
@@ -68,7 +67,7 @@ int init_light(t_scene *scene, char **line)
 	if (!color)
 		return (free_strs(cood));
 	l->pos[0] = str_to_float(cood[0]);
-	l->pos[1]  = str_to_float(cood[1]);
+	l->pos[1] = str_to_float(cood[1]);
 	l->pos[2] = str_to_float(cood[2]);
 	l->ratio = str_to_float(line[2]);
 	l->colour[0] = ft_atoi(color[0]);
