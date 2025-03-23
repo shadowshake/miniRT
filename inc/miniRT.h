@@ -89,8 +89,10 @@ int		check_colour_range(char *str);
 int		init_ambient(t_scene *scene, char **line);
 int		init_camera(t_scene *scene, char **line);
 int 	init_light(t_scene *scene, char **line);
-int		init_sphere(t_scene *scene, char **line, int *shape_inedx);
 int		init_shapes(t_scene *scene);
+int		init_sphere(t_scene *scene, char **line, int *shape_inedx);
+int		init_plane(t_scene *scene, char **line, int *shape_index);
+int		init_cylinder(t_scene *scene, char **line, int *shape_index);
 int		store_info(t_scene *scene, char *line, int *shape_index);
 
 /* render */

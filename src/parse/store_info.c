@@ -83,12 +83,10 @@ int	store_info(t_scene *scene, char *line, int *shape_index)
 		return (init_camera(scene, str));
 	else if (!ft_strncmp(str[0], "sp", 2))
 		return (init_sphere(scene, str, shape_index));
-	/*
 	else if (!ft_strncmp(str[0], "pl", 2))
-		return (init_plane(scene, str));
+		return (init_plane(scene, str, shape_index));
 	else if (!ft_strncmp(str[0], "cy", 2))
-		return (init_cylinder(scene, str));
-	*/
+		return (init_cylinder(scene, str, shape_index));
 	else
 		return (print_error("You passing weird stuff in rt file"));
 }

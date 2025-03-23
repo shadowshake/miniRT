@@ -1,26 +1,73 @@
 #include "../../inc/miniRT.h"
 
+static int	set_common(float *pos, int *colour, char *line1, char *line2)
+{
+	char	**cood;
+	char	**color;
+
+	cood = ft_split(line1, ',');
+	if (!cood)
+		return (0);
+	color = ft_split(line2, ',');
+	if (!color)
+		return (free_strs(cood));
+	pos[0] = str_to_float(cood[0]);
+	pos[1] = str_to_float(cood[1]);
+	pos[2] = str_to_float(cood[2]);
+	colour[0] = ft_atoi(color[0]);
+	colour[1] = ft_atoi(color[1]);
+	colour[2] = ft_atoi(color[2]);
+	free_strs(cood);
+	free_strs(color);
+	return (1);
+}
+
 int	init_sphere(t_scene *scene, char **line, int *shape_index)
 {
 	t_sphere	*sp;
-	char		**cood;
-	char		**color;
 
-	cood = ft_split(line[1], ',');
-	if (!cood)
-		return (0);
-	color = ft_split(line[3], ',');
-	if (!color)
-		return (free_strs(cood));
 	sp = &(scene->spheres[shape_index[0]]);
-	sp->pos[0] = str_to_float(cood[0]);
-	sp->pos[1]  = str_to_float(cood[1]);
-	sp->pos[2] = str_to_float(cood[2]);
+	if (!set_common(sp->pos, sp->colour, line[1], line[3]))
+		return (0);
+	printf("test %f\n", sp->pos[1]);
 	sp->dia = str_to_float(line[2]);
-	sp->colour[0] = ft_atoi(color[0]);
-	sp->colour[1] = ft_atoi(color[1]);
-	sp->colour[2] = ft_atoi(color[2]);
-	free_strs(cood);
-	free_strs(color);
+	return (1);
+}
+
+int	init_plane(t_scene *scene, char **line, int *shape_index)
+{
+	t_plane	*pl;
+	char	**vec;
+
+	pl = &(scene->planes[shape_index[1]]);
+	if (!set_common(pl->pos, pl->colour, line[1], line[3]))
+		return (0);
+	vec = ft_split(line[2], ',');
+	if (!vec)
+		return (0);
+	pl->vector[0] = str_to_float(vec[0]);
+	pl->vector[1] = str_to_float(vec[1]);
+	pl->vector[2] = str_to_float(vec[2]);
+	free_strs(vec);
+	return (1);
+}
+
+int	init_cylinder(t_scene *scene, char **line, int *shape_index)
+{
+	t_cylinder	*cy;
+	char		**vec;
+
+	cy = &(scene->cylinders[shape_index[2]]);
+	if (!set_common(cy->pos, cy->colour, line[1], line[5]))
+		return (0);
+	vec = ft_split(line[2], ',');
+	if (!vec)
+		return (0);
+	cy->dia = str_to_float(line[3]);
+	cy->height = str_to_float(line[4]);
+	cy->vector[0] = str_to_float(vec[0]);
+	cy->vector[1] = str_to_float(vec[1]);
+	cy->vector[2] = str_to_float(vec[2]);
+	free_strs(vec);
 	return (1);
 }
