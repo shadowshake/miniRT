@@ -12,6 +12,8 @@
 
 #include "../../inc/miniRT.h"
 
+/* set the coordinate and colour of each shape */
+/* since both of these attributes are common within all 3 */
 static int	set_common(float *pos, int *colour, char *line1, char *line2)
 {
 	char	**cood;
@@ -41,9 +43,8 @@ int	init_sphere(t_scene *scene, char **line, int *shape_index)
 	sp = &(scene->spheres[shape_index[0]]);
 	if (!set_common(sp->pos, sp->colour, line[1], line[3]))
 		return (0);
-	printf("test %f\n", sp->pos[1]);
 	sp->dia = str_to_float(line[2]);
-	return (shape_index[0]++);
+	return (++shape_index[0]);
 }
 
 int	init_plane(t_scene *scene, char **line, int *shape_index)
@@ -61,7 +62,7 @@ int	init_plane(t_scene *scene, char **line, int *shape_index)
 	pl->vector[1] = str_to_float(vec[1]);
 	pl->vector[2] = str_to_float(vec[2]);
 	free_strs(vec);
-	return (shape_index[1]++);
+	return (++shape_index[1]);
 }
 
 int	init_cylinder(t_scene *scene, char **line, int *shape_index)
@@ -81,5 +82,5 @@ int	init_cylinder(t_scene *scene, char **line, int *shape_index)
 	cy->vector[1] = str_to_float(vec[1]);
 	cy->vector[2] = str_to_float(vec[2]);
 	free_strs(vec);
-	return (shape_index[2]++);
+	return (++shape_index[2]);
 }

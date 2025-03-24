@@ -12,6 +12,7 @@
 
 #include "miniRT.h"
 
+/* malloc an array for each shape */
 int	init_shapes(t_scene *scene)
 {
 	scene->spheres = ft_calloc((scene->sp_qty + 1), sizeof (t_sphere));
@@ -74,7 +75,6 @@ int	store_info(t_scene *scene, char *line, int *shape_index)
 	if (!check_line(line))
 		return (0);
 	str = ft_split(line, ' ');
-	printf("line %s\n", str[0]);
 	if (str[0][0] == 'A')
 		return (init_ambient(scene, str));
 	else if (str[0][0] == 'L')

@@ -46,18 +46,7 @@ float	str_to_float(char *str)
 	return (sum);
 }
 
-/*
-int	*init_array(int *input, int len)
-{
-	int i;
-
-	i = 0;
-	while (i < len)
-		input[i] = 0;
-	return (input);
-}
-*/
-
+/* free string arrays and return 0 */
 int	free_strs(char **strs)
 {
 	int	i;
@@ -72,6 +61,7 @@ int	free_strs(char **strs)
 	return (0);
 }
 
+/* return 1 if the character is space */
 int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\f' || c == '\r'

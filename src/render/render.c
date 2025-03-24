@@ -12,8 +12,32 @@
 
 #include "../../inc/miniRT.h"
 
+/* right now this render only consider the position of the camera and circle */
+/* the lightings are not effective yet */
+void	rendercircle(t_scene *scene)
+{
+	int	colorcode;
+	int	i;
+	int	j;
+
+	colorcode = create_rgb(10, 0, 255);
+	printf("colorcode %d\n", colorcode);
+	i = 0;
+	j = 0;
+	while (i < 100)
+	{
+		while (j < 100)
+		{
+			mlx_draw(scene, i, j, colorcode);
+			j ++ ;
+		}
+		i ++ ;
+	}
+}
+
 void	render(t_scene *scene)
 {
+	rendercircle(scene);
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->img, 0, 0);
 	mlx_loop(scene->mlx);
 }

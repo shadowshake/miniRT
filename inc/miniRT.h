@@ -101,6 +101,7 @@ void	render(t_scene *scene);
 /* mlx render functions */
 void	mlx_draw(t_scene *data, int x, int y, int color);
 int		mlx_exit(int keycode, t_scene *mlx);
+int		create_rgb(int r, int g, int b);
 
 /* utilities */
 float	str_to_float(char *str);

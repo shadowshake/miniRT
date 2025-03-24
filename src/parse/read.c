@@ -12,6 +12,7 @@
 
 #include "miniRT.h"
 
+/* used ft_isspace to detect spaces */
 char	*white_space_loop(char *line, char *temp)
 {
 	int	i;
@@ -77,6 +78,7 @@ int	read_file(int fd, t_scene *scene, int *shape_index)
 	return (1);
 }
 
+/* count the numbers of each shape in the .rt file */
 int	count_shapes(char *file, t_scene *scene)
 {
 	int		fd;
