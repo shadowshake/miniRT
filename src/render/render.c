@@ -32,6 +32,7 @@ void	rendercircle(t_scene *scene)
 			j ++ ;
 		}
 		i ++ ;
+		j = 0;
 	}
 }
 

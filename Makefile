@@ -10,6 +10,8 @@ OS_NAME := $(shell uname -s | tr A-Z a-z)
 
 LIBFT = libft
 
+MLX = libmlx
+
 NAME = miniRT
 
 OBJS = ${SRC:.c=.o}
@@ -18,16 +20,12 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft
 
-# MLX = libmlx
-
-# MLX_FLAGS = -L. -lmlx -lX11 -lXext -lm
-
-ifeq ($(OS_NAME),linux)
-	MLX = libmlx
+ifeq (${OS_NAME},linux)
+	MLX_DIR = libmlx
 	MLX_FLAGS = -L. -lmlx -lX11 -lXext -lm
 else
-	MLX = libmlx_opengl
-	MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+	MLX_DIR = libmlx_opengl
+	MLX_FLAGS = -L. -lmlx -framework OpenGL -framework AppKit
 endif
 
 %.o: %.c
@@ -43,15 +41,15 @@ ${LIBFT}.a:
 	mv ${LIBFT}/${LIBFT}.a ./
 
 ${MLX}.a:
-	${MAKE} re -C ${MLX}
-	mv ${MLX}/${MLX}.a ./
+	${MAKE} re -C ${MLX_DIR}
+	mv ${MLX_DIR}/${MLX}.a ./
 
 clean:
 	rm -f ${OBJS}
 	rm -f ${LIBFT}.a
 	rm -f ${MLX}.a
 	${MAKE} fclean -C ${LIBFT}
-	${MAKE} clean -C ${MLX}
+	${MAKE} clean -C ${MLX_DIR}
 
 fclean: clean
 	rm -f ${NAME}

@@ -2,7 +2,13 @@
 # define MINIRT_H
 
 # include "../libft/ft_printf/ft_printf.h"
-# include "../libmlx/mlx.h"
+# ifdef linux
+#  include "../libmlx/mlx.h"
+#  define ESCKEY 65307
+# else
+#  include "../libmlx_opengl/mlx.h"
+#  define ESCKEY 53
+# endif
 
 # include <math.h>
 # include <fcntl.h>
