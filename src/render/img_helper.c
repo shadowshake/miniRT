@@ -16,13 +16,13 @@ void	mlx_draw(t_scene *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x <= WINHEIGHT && x >= -(WINHEIGHT)
-		&& y <= (WINWIDTH) && y >= -(WINWIDTH))
-	{
-		dst = data->addr + (y * data->line_length
-				+ x * (data->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
+	// if (x <= WINHEIGHT && x >= -(WINHEIGHT)
+	// 	&& y <= (WINWIDTH) && y >= -(WINWIDTH))
+	// {
+	dst = data->addr + (y * data->line_length
+			+ x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+	// }
 }
 
 int	mlx_exit(int keycode, t_scene *mlx)

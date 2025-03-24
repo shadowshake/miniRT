@@ -24,9 +24,9 @@ void	rendercircle(t_scene *scene)
 	printf("colorcode %d\n", colorcode);
 	i = 0;
 	j = 0;
-	while (i < 100)
+	while (i < 400)
 	{
-		while (j < 100)
+		while (j < 400)
 		{
 			mlx_draw(scene, i, j, colorcode);
 			j ++ ;
