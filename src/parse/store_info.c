@@ -12,32 +12,19 @@
 
 #include "miniRT.h"
 
-float	str_to_float(char *str)
+/* malloc an array for each shape */
+int	init_shapes(t_scene *scene)
 {
-	float	sum;
-	float	prec;
-	float	div;
-	float	sign;
-
-	prec = 0.0;
-	div = 1.0;
-	sign = 1.0;
-	if (str && str[0] == '-')
-		sign *= -1.0;
-	sum = (float)ft_atoi(str);
-	while (*str && *str != '.')
-		str++;
-	if (*str++ == '.')
-	{
-		while (*str >= '0' && *str <= '9')
-		{
-			div *= 10.0;
-			prec += (*str - '0') / div;
-			str++;
-		}
-		sum += prec * sign;
-	}
-	return (sum);
+	scene->spheres = ft_calloc((scene->sp_qty + 1), sizeof (t_sphere));
+	if (!scene->spheres)
+		return (0);
+	scene->planes = ft_calloc((scene->pl_qty + 1), sizeof (t_plane));
+	if (!scene->planes)
+		return (0);
+	scene->cylinders = ft_calloc((scene->cy_qty + 1), sizeof (t_cylinder));
+	if (!scene->cylinders)
+		return (0);
+	return (1);
 }
 
 int	check_colour_range(char *str)
@@ -70,6 +57,7 @@ int	check_line(char *line)
 	int	i;
 
 	i = 1;
+	line = ft_strchr(line, ' ');
 	while (line[i])
 	{
 		if (!ft_isdigit(line[i]) && line[i] != ' ' && line[i] != ','
@@ -80,7 +68,7 @@ int	check_line(char *line)
 	return (1);
 }
 
-int	store_info(t_scene *scene, char *line)
+int	store_info(t_scene *scene, char *line, int *shape_index)
 {
 	char	**str;
 
@@ -89,20 +77,16 @@ int	store_info(t_scene *scene, char *line)
 	str = ft_split(line, ' ');
 	if (str[0][0] == 'A')
 		return (init_ambient(scene, str));
-	/*
-	else if (str[0] == 'L')
+	else if (str[0][0] == 'L')
 		return (init_light(scene, str));
-	*/
-	else if (str[0] == 'C')
+	else if (str[0][0] == 'C')
 		return (init_camera(scene, str));
-	else if (ft_strncmp(str[0], "sp", 2))
-		return (init_sphere(scene, str));
-	/*
-	else if (ft_strncmp(str[0], "pl", 2))
-		return (init_plane(scene, str));
-	else if (ft_strncmp(str[0], "cy", 2))
-		return (init_cylinder(scene, str));
-	*/
+	else if (!ft_strncmp(str[0], "sp", 2))
+		return (init_sphere(scene, str, shape_index));
+	else if (!ft_strncmp(str[0], "pl", 2))
+		return (init_plane(scene, str, shape_index));
+	else if (!ft_strncmp(str[0], "cy", 2))
+		return (init_cylinder(scene, str, shape_index));
 	else
 		return (print_error("You passing weird stuff in rt file"));
 }

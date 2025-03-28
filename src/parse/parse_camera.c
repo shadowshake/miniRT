@@ -1,4 +1,16 @@
-#include "../../inc/miniRT.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_camera.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shulee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 18:50:39 by shulee            #+#    #+#             */
+/*   Updated: 2025/03/23 18:50:40 by shulee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "miniRT.h"
 
 int	check_cam_input(char **line)
 {
@@ -24,7 +36,7 @@ int init_camera(t_scene *scene, char **line)
 	vec = ft_split(line[1], ',');
 	if (!vec)
 		return (0);
-	cam = scene->camera;
+	cam = &scene->camera;
 	cam->pos[0] = str_to_float(cood[0]);
 	cam->pos[1] = str_to_float(cood[1]);
 	cam->pos[2] = str_to_float(cood[2]);

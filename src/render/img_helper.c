@@ -10,23 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/miniRT.h"
+#include "miniRT.h"
 
 void	mlx_draw(t_scene *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x <= 800 && x >= -800 && y <= 800 && y >= -800)
-	{
-		dst = data->addr + (y * data->line_length
-				+ x * (data->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
+	// if (x <= WINHEIGHT && x >= -(WINHEIGHT)
+	// 	&& y <= (WINWIDTH) && y >= -(WINWIDTH))
+	// {
+	dst = data->addr + (y * data->line_length
+			+ x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+	// }
 }
 
-int	mlx_exit(int keycode, t_fractal *mlx)
+int	mlx_exit(int keycode, t_scene *mlx)
 {
-	if (keycode == 53)
+	printf("%d\n", keycode);
+	if (keycode == ESCKEY)
 	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
 		exit(1);
@@ -34,4 +36,9 @@ int	mlx_exit(int keycode, t_fractal *mlx)
 	else if (keycode < 0)
 		exit(1);
 	return (0);
+}
+
+int	create_rgb(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
 }

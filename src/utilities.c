@@ -18,7 +18,36 @@ int	print_error(char *str)
 	return (0);
 }
 
-void	free_strs(char **strs)
+float	str_to_float(char *str)
+{
+	float	sum;
+	float	prec;
+	float	div;
+	float	sign;
+
+	prec = 0.0;
+	div = 1.0;
+	sign = 1.0;
+	if (str && str[0] == '-')
+		sign *= -1.0;
+	sum = (float)ft_atoi(str);
+	while (*str && *str != '.')
+		str++;
+	if (*str++ == '.')
+	{
+		while (*str >= '0' && *str <= '9')
+		{
+			div *= 10.0;
+			prec += (*str - '0') / div;
+			str++;
+		}
+		sum += prec * sign;
+	}
+	return (sum);
+}
+
+/* free string arrays and return 0 */
+int	free_strs(char **strs)
 {
 	int	i;
 
@@ -29,4 +58,14 @@ void	free_strs(char **strs)
 			free(strs[i]);
 		free(strs);
 	}
+	return (0);
+}
+
+/* return 1 if the character is space */
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\f' || c == '\r'
+		|| c == 'v' || c == ' ')
+		return (1);
+	return (0);
 }
