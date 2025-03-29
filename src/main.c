@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/miniRT.h"
+#include "miniRT.h"
 
 static void	scene_init(t_scene *scene)
 {

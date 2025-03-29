@@ -54,11 +54,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_toupper(int x);
 int		ft_tolower(int x);
-char	*ft_strchr(const char *s, int c);
-int		ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
 char	*get_next_line(int fd);
-char	*ft_strdup(char *src);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

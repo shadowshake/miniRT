@@ -6,7 +6,7 @@
 #  include "../libmlx/mlx.h"
 #  define ESCKEY 65307
 # else
-#  include "../libmlx_opengl/mlx.h"
+//#  include "../libmlx_opengl/mlx.h"
 #  define ESCKEY 53
 # endif
 

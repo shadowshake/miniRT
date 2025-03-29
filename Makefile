@@ -30,7 +30,7 @@ else
 endif
 
 %.o: %.c
-	${CC} ${CFLAGS} -Imlx -c $< -o $@
+	${CC} ${CFLAGS} -Imlx -Iinc -c $< -o $@
 
 all: ${NAME}
 
