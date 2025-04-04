@@ -40,21 +40,21 @@ typedef struct s_ray
 
 typedef struct s_sphere
 {
-	float	pos[3];
+	t_vec3	pos;
 	float	dia;
 	int		colour[3];
 }   t_sphere;
 
 typedef struct s_plane
 {
-	float	pos[3];
+	t_vec3	point;
 	t_vec3	vector;
 	int		colour[3];
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	float	pos[3];
+	t_vec3	pos;
 	t_vec3	axis;
 	float	dia;
 	float	height;
@@ -63,7 +63,7 @@ typedef struct s_cylinder
 
 typedef struct s_light
 {
-	float	pos[3];
+	t_vec3	pos;
 	float	ratio;
 	int		colour[3];
 }	t_light;
@@ -76,7 +76,7 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	float	pos[3];
+	t_vec3	pos;
 	t_vec3	orient;
 	int		fov;
 }	t_camera;
@@ -137,5 +137,9 @@ float	vec_dot(t_vec3 a, t_vec3 b);
 t_vec3	vec_cross(t_vec3 a, t_vec3 b);
 float	vec_length(t_vec3 v);
 t_vec3	vec_normalize(t_vec3 v);
+
+/* raytrace */
+float	sphere_intersect(t_vec3 center, float radius, t_ray ray);
+float	plane_intersect(t_vec3 point, t_vec3 vector, t_ray ray);
 
 #endif

@@ -14,7 +14,7 @@
 
 /* set the coordinate and colour of each shape */
 /* since both of these attributes are common within all 3 */
-static int	set_common(float *pos, int *colour, char *line1, char *line2)
+static int	set_common(t_vec3 *pos, int *colour, char *line1, char *line2)
 {
 	char	**cood;
 	char	**color;
@@ -25,9 +25,7 @@ static int	set_common(float *pos, int *colour, char *line1, char *line2)
 	color = ft_split(line2, ',');
 	if (!color)
 		return (free_strs(cood));
-	pos[0] = str_to_float(cood[0]);
-	pos[1] = str_to_float(cood[1]);
-	pos[2] = str_to_float(cood[2]);
+	*pos = vec3(str_to_float(cood[0]), str_to_float(cood[1]), str_to_float(cood[2]));
 	colour[0] = ft_atoi(color[0]);
 	colour[1] = ft_atoi(color[1]);
 	colour[2] = ft_atoi(color[2]);
@@ -41,7 +39,7 @@ int	init_sphere(t_scene *scene, char **line, int *shape_index)
 	t_sphere	*sp;
 
 	sp = &(scene->spheres[shape_index[0]]);
-	if (!set_common(sp->pos, sp->colour, line[1], line[3]))
+	if (!set_common(&sp->pos, sp->colour, line[1], line[3]))
 		return (0);
 	sp->dia = str_to_float(line[2]);
 	return (++shape_index[0]);
@@ -53,7 +51,7 @@ int	init_plane(t_scene *scene, char **line, int *shape_index)
 	char	**vec;
 
 	pl = &(scene->planes[shape_index[1]]);
-	if (!set_common(pl->pos, pl->colour, line[1], line[3]))
+	if (!set_common(&pl->point, pl->colour, line[1], line[3]))
 		return (0);
 	vec = ft_split(line[2], ',');
 	if (!vec)
@@ -69,7 +67,7 @@ int	init_cylinder(t_scene *scene, char **line, int *shape_index)
 	char		**vec;
 
 	cy = &(scene->cylinders[shape_index[2]]);
-	if (!set_common(cy->pos, cy->colour, line[1], line[5]))
+	if (!set_common(&cy->pos, cy->colour, line[1], line[5]))
 		return (0);
 	vec = ft_split(line[2], ',');
 	if (!vec)

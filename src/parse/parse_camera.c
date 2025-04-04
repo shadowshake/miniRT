@@ -35,9 +35,7 @@ int init_camera(t_scene *scene, char **line)
 	vec = ft_split(line[2], ',');
 	if (!vec)
 		return (0);
-	scene->camera.pos[0] = str_to_float(cood[0]);
-	scene->camera.pos[1] = str_to_float(cood[1]);
-	scene->camera.pos[2] = str_to_float(cood[2]);
+	scene->camera.orient = vec3(str_to_float(cood[0]), str_to_float(cood[1]), str_to_float(cood[2]));
 	scene->camera.orient = vec3(str_to_float(vec[0]), str_to_float(vec[1]), str_to_float(vec[2]));
 	scene->camera.fov = ft_atoi(line[3]);
 	return (1);

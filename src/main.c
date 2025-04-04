@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	if (!parse(argv[1], scene))
 		return (1);
 	scene_init(scene);
-	printf("%f, %f, %f\n", scene->camera.orient.x, scene->camera.orient.z, scene->camera.orient.z);
+	printf("%f, %f, %f\n", scene->spheres->pos.x, scene->spheres->pos.y, scene->spheres->pos.z);
 	render(scene);
 	free_scene(scene);
 	return (0);

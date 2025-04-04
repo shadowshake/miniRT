@@ -4,6 +4,7 @@ FILES = main.c \
 SRC =	$(wildcard ./src/parse/*.c) \
 		$(wildcard ./src/render/*.c) \
 		$(wildcard ./src/helpers/*.c) \
+		$(wildcard ./src/raytrace/*.c) \
 		src/main.c \
 
 OS_NAME := $(shell uname -s | tr A-Z a-z)
