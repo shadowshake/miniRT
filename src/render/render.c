@@ -19,19 +19,20 @@ void	rendercircle(t_scene *scene)
 	int	colorcode;
 	int	i;
 	int	j;
+	int image_width = 256;
+	int	image_height = 256;
 
-	colorcode = create_rgb(10, 0, 255);
-	printf("colorcode %d\n", colorcode);
 	i = 0;
 	j = 0;
-	while (i < 400)
+	while (i < image_height)
 	{
-		while (j < 400)
+		while (j < image_width)
 		{
+			colorcode = create_rgb(j, i, 0);
 			mlx_draw(scene, i, j, colorcode);
-			j ++ ;
+			j++;
 		}
-		i ++ ;
+		i++;
 		j = 0;
 	}
 }

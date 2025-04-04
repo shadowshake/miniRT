@@ -25,6 +25,19 @@
 #  define WINWIDTH 800
 # endif
 
+typedef struct s_vec3
+{
+	float	x;
+	float	y;
+	float	z;
+}	t_vec3;
+
+typedef struct s_ray
+{
+	t_vec3	origin;
+	t_vec3	direction;
+}	t_ray;
+
 typedef struct s_sphere
 {
 	float	pos[3];
@@ -35,14 +48,14 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	float	pos[3];
-	float	vector[3];
+	t_vec3	vector;
 	int		colour[3];
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	float	pos[3];
-	float	vector[3];
+	t_vec3	axis;
 	float	dia;
 	float	height;
 	int		colour[3];
@@ -64,7 +77,7 @@ typedef struct s_ambient
 typedef struct s_camera
 {
 	float	pos[3];
-	float	vector[3];
+	t_vec3	orient;
 	int		fov;
 }	t_camera;
 
@@ -114,5 +127,15 @@ float	str_to_float(char *str);
 int		free_strs(char **strs);
 int		print_error(char *str);
 int		ft_isspace(char c);
+
+/* helpers */
+t_vec3	vec3(float x, float y, float z);
+t_vec3	vec_add(t_vec3 a, t_vec3 b);
+t_vec3	vec_sub(t_vec3 a, t_vec3 b);
+t_vec3	vec_scale(t_vec3 v, float scalar);
+float	vec_dot(t_vec3 a, t_vec3 b);
+t_vec3	vec_cross(t_vec3 a, t_vec3 b);
+float	vec_length(t_vec3 v);
+t_vec3	vec_normalize(t_vec3 v);
 
 #endif

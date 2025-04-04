@@ -1,11 +1,10 @@
 
 FILES = main.c \
-		utilities.c \
 
 SRC =	$(wildcard ./src/parse/*.c) \
 		$(wildcard ./src/render/*.c) \
+		$(wildcard ./src/helpers/*.c) \
 		src/main.c \
-		src/utilities.c
 
 OS_NAME := $(shell uname -s | tr A-Z a-z)
 

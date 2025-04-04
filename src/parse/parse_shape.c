@@ -58,9 +58,7 @@ int	init_plane(t_scene *scene, char **line, int *shape_index)
 	vec = ft_split(line[2], ',');
 	if (!vec)
 		return (0);
-	pl->vector[0] = str_to_float(vec[0]);
-	pl->vector[1] = str_to_float(vec[1]);
-	pl->vector[2] = str_to_float(vec[2]);
+	pl->vector = vec3(str_to_float(vec[0]), str_to_float(vec[1]), str_to_float(vec[2]));
 	free_strs(vec);
 	return (++shape_index[1]);
 }
@@ -78,9 +76,7 @@ int	init_cylinder(t_scene *scene, char **line, int *shape_index)
 		return (0);
 	cy->dia = str_to_float(line[3]);
 	cy->height = str_to_float(line[4]);
-	cy->vector[0] = str_to_float(vec[0]);
-	cy->vector[1] = str_to_float(vec[1]);
-	cy->vector[2] = str_to_float(vec[2]);
+	cy->axis = vec3(str_to_float(vec[0]), str_to_float(vec[1]), str_to_float(vec[2]));
 	free_strs(vec);
 	return (++shape_index[2]);
 }
