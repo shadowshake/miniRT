@@ -1,23 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shulee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 18:51:16 by shulee            #+#    #+#             */
-/*   Updated: 2025/03/23 18:51:17 by shulee           ###   ########.fr       */
+/*   Created: 2025/05/05 16:19:56 by shulee            #+#    #+#             */
+/*   Updated: 2025/05/05 16:19:58 by shulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/miniRT.h"
 
-/* right now this render only consider the position of the camera and circle */
-/* the lightings are not effective yet */
-
-void	render(t_scene *scene)
-{
-	rendercircle(scene);
-	mlx_put_image_to_window(scene->mlx, scene->win, scene->img, 0, 0);
-	mlx_loop(scene->mlx);
-}

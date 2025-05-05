@@ -103,6 +103,9 @@ int		store_info(t_scene *scene, char *line, int *shape_index);
 
 /* render */
 void	render(t_scene *scene);
+void	rendersphere(t_sphere *sp, t_scene* scene);
+void	renderplane(t_plane *pl, t_scene* scene);
+void	rendercylinder(t_cylinder *cy, t_scene* scene);
 
 /* mlx render functions */
 void	mlx_draw(t_scene *data, int x, int y, int color);
